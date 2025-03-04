@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulch Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mulch Calculator</h2>
+        <p>Enter the area dimensions and depth to calculate how much mulch you need.</p>
+        <label>Length (feet):</label>
+        <input type="number" id="length" placeholder="Enter length">
+        <label>Width (feet):</label>
+        <input type="number" id="width" placeholder="Enter width">
+        <label>Depth (inches):</label>
+        <input type="number" id="depth" placeholder="Enter depth">
+        <button onclick="calculateMulch()">Calculate</button>
+        <p id="result"></p>
+    </div>
+    
+    <script>
+        function calculateMulch() {
+            let length = document.getElementById("length").value;
+            let width = document.getElementById("width").value;
+            let depth = document.getElementById("depth").value;
+            
+            if (length && width && depth) {
+                let cubicFeet = (length * width * (depth / 12)).toFixed(2);
+                let cubicYards = (cubicFeet / 27).toFixed(2);
+                document.getElementById("result").innerText = `You need ${cubicFeet} cubic feet (${cubicYards} cubic yards) of mulch.`;
+            } else {
+                document.getElementById("result").innerText = "Please fill out all fields.";
+            }
+        }
+    </script>
+</body>
+</html>
